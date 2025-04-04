@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "379548823363",
+    "project_id": "barberlink-a4f23",
+    "storage_bucket": "barberlink-a4f23.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:379548823363:android:6d3c9f5f64465bad5cc9f6",
+        "android_client_info": {
+          "package_name": "com.example.barber_link"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgYJ7CfTr18Gzfd5wgrgTe26of71x-bzY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
