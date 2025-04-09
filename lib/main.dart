@@ -1,8 +1,9 @@
 import 'package:barber_link/Routes/app_routes.dart';
-import 'package:barber_link/Views/home/home_view.dart';
+import 'package:barber_link/Views/logIn/log_in_view.dart';
 import 'package:barber_link/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,12 +17,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      debugShowMaterialGrid: false,
       title: 'Flutter Demo',
       routes: appRoutes,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        textTheme: GoogleFonts.juaTextTheme(),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
       ),
-      home: HomeView(),
+      home: LogInView(),
     );
   }
 }
