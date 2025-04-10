@@ -27,15 +27,11 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(
-        child: SizedBox(
-          width: 50,
-          height: 20,
-          child: Boton(
-            onTap: () {
-              Navigator.pushReplacementNamed(context, Routes.logIn);
-            },
-            label: 'LOG OUT',
-          ),
+        child: Boton(
+          onTap: () {
+            Navigator.pushReplacementNamed(context, Routes.logIn);
+          },
+          label: 'LOG OUT',
         ),
       ),
       appBar: AppBar(

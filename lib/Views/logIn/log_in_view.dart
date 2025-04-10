@@ -2,6 +2,7 @@ import 'package:barber_link/Routes/routes.dart';
 import 'package:barber_link/Theme/app_colors.dart';
 import 'package:barber_link/Views/Widgets/boton.dart';
 import 'package:barber_link/Views/Widgets/form_field.dart';
+import 'package:barber_link/Views/new_password/new_password.dart';
 import 'package:barber_link/Views/sign_in/sign_in_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -79,7 +80,14 @@ class _LogInViewState extends State<LogInView> {
                       'Olvidé la contraseña',
                       style: TextStyle(color: AppColors().azulMorado),
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const NewPassword(),
+                        ),
+                      );
+                    },
                   ),
                   SizedBox(width: 25),
                 ],
