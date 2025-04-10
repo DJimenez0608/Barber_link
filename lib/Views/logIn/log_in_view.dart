@@ -1,5 +1,8 @@
 import 'package:barber_link/Routes/routes.dart';
 import 'package:barber_link/Theme/app_colors.dart';
+import 'package:barber_link/Views/Widgets/boton.dart';
+import 'package:barber_link/Views/Widgets/form_field.dart';
+import 'package:barber_link/Views/sign_in/sign_in_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -53,40 +56,18 @@ class _LogInViewState extends State<LogInView> {
                   ),
                 ),
               ),
+              SizedBox(height: 20),
 
               //FORMS
               //USUARIO
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 27.0),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColors().azulMorado),
-                    ),
-                    labelText: 'Usuario',
-                    labelStyle: TextStyle(color: AppColors().negro),
-                    border: OutlineInputBorder(),
-                  ),
-                  controller: _userController,
-                ),
-              ),
+              CustomFormField(label: 'Usuario', controller: _userController),
 
               SizedBox(height: 15),
 
               //CONTRASEÑA
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 27.0),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: AppColors().azulMorado),
-                    ),
-                    labelText: 'Contraseña',
-                    labelStyle: TextStyle(color: AppColors().negro),
-                    border: OutlineInputBorder(),
-                  ),
-                  controller: _passswordController,
-                ),
+              CustomFormField(
+                label: 'Contraseña',
+                controller: _passswordController,
               ),
 
               //RESTAURAR CONTRASEÑA
@@ -94,7 +75,10 @@ class _LogInViewState extends State<LogInView> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   GestureDetector(
-                    child: Text('Olvide la contraseña'),
+                    child: Text(
+                      'Olvidé la contraseña',
+                      style: TextStyle(color: AppColors().azulMorado),
+                    ),
                     onTap: () {},
                   ),
                   SizedBox(width: 25),
@@ -103,19 +87,12 @@ class _LogInViewState extends State<LogInView> {
 
               SizedBox(height: 40),
 
-              //BOTTON
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size(150, 40),
-                  backgroundColor: AppColors().azulMorado,
-                ),
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, Routes.signIn);
+              //BUTTON
+              Boton(
+                label: 'Inisiar sesión',
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, Routes.home);
                 },
-                child: Text(
-                  'Iniciar sesión',
-                  style: TextStyle(color: AppColors().blanco, fontSize: 17),
-                ),
               ),
 
               //REGISTRAR NUEVA CUENTA
@@ -129,7 +106,14 @@ class _LogInViewState extends State<LogInView> {
                         'Registrate',
                         style: GoogleFonts.inter(color: AppColors().azulMorado),
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SignInView(),
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -137,6 +121,7 @@ class _LogInViewState extends State<LogInView> {
               SizedBox(height: 20),
               //INICIAR SESION CON GOOGLE
               InkWell(
+                onTap: () {},
                 child: Ink(
                   height: 30,
                   width: 30,
