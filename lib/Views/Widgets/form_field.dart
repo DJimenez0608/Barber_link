@@ -3,8 +3,14 @@ import 'package:flutter/material.dart';
 
 class CustomFormField extends StatefulWidget {
   final String? label;
+  final bool enable;
   final TextEditingController controller;
-  const CustomFormField({super.key, this.label, required this.controller});
+  const CustomFormField({
+    super.key,
+    this.label,
+    required this.controller,
+    this.enable = true,
+  });
 
   @override
   State<CustomFormField> createState() => _CustomFormFieldState();
@@ -16,6 +22,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 27.0),
       child: TextFormField(
+        enabled: widget.enable,
         decoration: InputDecoration(
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: AppColors().azulMorado),

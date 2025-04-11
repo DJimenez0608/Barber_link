@@ -1,5 +1,3 @@
-import 'package:barber_link/Views/new_password/new_password.dart';
-
 class Routes {
   Routes._();
   static const home = '/home';
