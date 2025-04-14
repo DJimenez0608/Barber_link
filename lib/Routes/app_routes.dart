@@ -8,7 +8,7 @@ import 'package:flutter/widgets.dart';
 Map<String, Widget Function(BuildContext)> get appRoutes {
   return {
     Routes.home: (context) => const HomeView(),
-    Routes.signIn: (context) => const SignInView(),
+    Routes.signIn: (context) => const SignInView(tipoUsuario: 'administrador'),
     Routes.logIn: (context) => const LogInView(),
     Routes.newPassword: (context) => const NewPassword(),
   };

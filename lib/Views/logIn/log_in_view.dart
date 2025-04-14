@@ -3,7 +3,7 @@ import 'package:barber_link/Theme/app_colors.dart';
 import 'package:barber_link/Views/Widgets/boton.dart';
 import 'package:barber_link/Views/Widgets/form_field.dart';
 import 'package:barber_link/Views/new_password/new_password.dart';
-import 'package:barber_link/Views/sign_in/sign_in_view.dart';
+import 'package:barber_link/Views/sign_in/select_type_user.dart'; // Ensure this path is correct
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -97,7 +97,7 @@ class _LogInViewState extends State<LogInView> {
 
               //BUTTON
               Boton(
-                label: 'Inisiar sesión',
+                label: 'Iniciar sesión',
                 onTap: () {
                   Navigator.pushReplacementNamed(context, Routes.home);
                 },
@@ -108,7 +108,7 @@ class _LogInViewState extends State<LogInView> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('No tienes cuenta?', style: GoogleFonts.inter()),
+                    Text('¿No tienes cuenta?', style: GoogleFonts.inter()),
                     GestureDetector(
                       child: Text(
                         'Registrate',
@@ -118,7 +118,7 @@ class _LogInViewState extends State<LogInView> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const SignInView(),
+                            builder: (context) => const SelectRegisterTypeView(),
                           ),
                         );
                       },
@@ -132,8 +132,15 @@ class _LogInViewState extends State<LogInView> {
                 onTap: () {},
                 child: Ink(
                   height: 30,
-                  width: 30,
-                  child: Image.asset('assets/Icons/google.png'),
+                  width: 70,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/Icons/google.png'),
+                      SizedBox(width: 10),
+                      Image.asset('assets/Icons/FaceebookLogo.png'),
+                    ],
+                  ),
                 ),
               ),
             ],
