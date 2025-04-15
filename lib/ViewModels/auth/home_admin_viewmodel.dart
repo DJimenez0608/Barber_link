@@ -31,7 +31,7 @@ class HomeAdminViewModel extends ChangeNotifier {
 
     try {
       final doc = await FirebaseFirestore.instance
-          .collection('users') // Asegúrate de que el nombre de la colección sea correcto
+          .collection('users')
           .doc(user.uid)
           .get();
 
