@@ -22,7 +22,7 @@ class AuthRepository {
         'nombre': nombre,
         'direccion': direccion,
         'celular': celular,
-        'tipoUsuario': tipoUsuario, // Guardar el tipo de usuario (administrador, cliente, etc.)
+        'tipoUsuario': tipoUsuario, // Guardar el tipo de usuario (cliente o comercio)
         'createdAt': FieldValue.serverTimestamp(),
       });
     } catch (e) {
@@ -47,6 +47,26 @@ class AuthRepository {
 
   // LOGIN A UN USUARIO
   Future<void> logInUser(String email, String password) async {
-    await auth.signInWithEmailAndPassword(email: email, password: password);
+    try {
+      // Autenticar al usuario con correo y contraseña
+      await auth.signInWithEmailAndPassword(email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      print('Codigo de error: ${e.code}, ${e.message}, ${e.toString()}'); // Imprime el código de error para depuración
+      switch (e.code) {
+        /*case 'user-not-found':
+          throw 'No se encontró un usuario con este correo.';*/
+        case 'invalid-credential':
+          throw 'El usuario o contraseña es incorrecto/a.';
+        case 'invalid-email':
+          throw 'El formato del correo electrónico no es válido.';
+        case 'user-disabled':
+          throw 'La cuenta de este usuario ha sido deshabilitada.';
+        default:
+          throw 'Ocurrió un error inesperado. Por favor, intenta nuevamente.';
+      }
+    } catch (e) {
+      // Manejo de cualquier otro error inesperado
+      throw 'Ocurrió un error al iniciar sesión: $e';
+    }
   }
 }

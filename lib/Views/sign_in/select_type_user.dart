@@ -50,7 +50,7 @@ class SelectRegisterTypeView extends StatelessWidget {
               ),
               SizedBox(height: 20),
               
-              // Botón Comercio
+              /*// Botón Administrador
                Boton(
                 label: 'Soy Administrador',
                 onTap: () {
@@ -62,9 +62,9 @@ class SelectRegisterTypeView extends StatelessWidget {
                   );
                 },
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 20),*/
               
-              // Botón Administrador
+              // Botón Comercio
                Boton(
                 label: 'Soy Comercio',
                 onTap: () {
