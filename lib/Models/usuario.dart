@@ -1,13 +1,26 @@
-class Usuario {
-  final String nombre;
-  final String direccio;
-  final String celular;
-  final String conrreo;
+// models/user_model.dart
+class UserModel {
+  final String? nombre;
+  final String? email;
+  final String? celular;
+  final String? direccion;
+  final String? tipoUsuario;
 
-  Usuario({
-    required this.nombre,
-    required this.direccio,
-    required this.celular,
-    required this.conrreo,
+  UserModel({
+    this.nombre,
+    this.email,
+    this.celular,
+    this.direccion,
+    this.tipoUsuario,
   });
+
+  factory UserModel.fromFirestore(Map<String, dynamic> data) {
+    return UserModel(
+      nombre: data['nombre'],
+      email: data['email'],
+      celular: data['celular'],
+      direccion: data['direccion'],
+      tipoUsuario: data['tipoUsuario'] ?? 'Administrador',
+    );
+  }
 }

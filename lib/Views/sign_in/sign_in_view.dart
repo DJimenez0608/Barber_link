@@ -8,21 +8,34 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SignInView extends StatefulWidget {
-  const SignInView({super.key});
+  final String tipoUsuario; // Nuevo parámetro para el tipo de usuario
+
+  const SignInView({super.key, required this.tipoUsuario});
 
   @override
   State<SignInView> createState() => _SignInViewState();
 }
 
 class _SignInViewState extends State<SignInView> {
+  final TextEditingController nombre = TextEditingController();
+  final TextEditingController direccion = TextEditingController();
+  final TextEditingController celular = TextEditingController();
+  final TextEditingController email = TextEditingController();
+  final TextEditingController password = TextEditingController();
+  
+  @override
+  void dispose() {
+    nombre.dispose();
+    direccion.dispose();
+    celular.dispose();
+    email.dispose();
+    password.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final authVM = Provider.of<AuthViewModel>(context);
-    final TextEditingController nombre = TextEditingController();
-    final TextEditingController direccion = TextEditingController();
-    final TextEditingController celular = TextEditingController();
-    final TextEditingController email = TextEditingController();
-    final TextEditingController password = TextEditingController();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors().azulMorado,
@@ -46,7 +59,17 @@ class _SignInViewState extends State<SignInView> {
           SizedBox(height: 40),
           Boton(
             onTap: () async {
-              await authVM.registerUser(email.text, password.text);
+              // Define el tipo de usuario como el proporcionado en el widget
+              final tipoUsuario = widget.tipoUsuario;
+
+              await authVM.registerUser(
+                email.text,
+                password.text,
+                nombre.text,
+                direccion.text,
+                celular.text,
+                tipoUsuario,
+              );
 
               final e = authVM.errorMessage;
 
@@ -56,37 +79,11 @@ class _SignInViewState extends State<SignInView> {
               if (e == null) {
                 Navigator.pushReplacementNamed(context, Routes.home);
               } else {
-                if (e == 'weak-password') {
-                  showDialog(
-                    context: context,
-                    builder:
-                        (BuildContext context) =>
-                            CustomAlertDialog(mensaje: 'Contraseña debil'),
-                  );
-                }
-                if (e == 'email-already-in-use') {
-                  showDialog(
-                    context: context,
-                    builder:
-                        (BuildContext context) =>
-                            CustomAlertDialog(mensaje: 'Email existente'),
-                  );
-                }
-                if (e == 'invalid-email') {
-                  showDialog(
-                    context: context,
-                    builder:
-                        (BuildContext context) =>
-                            CustomAlertDialog(mensaje: 'Email invalido'),
-                  );
-                } else {
-                  showDialog(
-                    context: context,
-                    builder:
-                        (BuildContext context) =>
-                            CustomAlertDialog(mensaje: 'Error al registrarse'),
-                  );
-                }
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) =>
+                      CustomAlertDialog(mensaje: e),
+                );
               }
             },
             label: 'Registrarme',
