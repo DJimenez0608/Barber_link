@@ -71,3 +71,6 @@ Es posible que necesiten instalar Firebase en sus computadoras. Pueden seguir la
 ### ⚠️ **IMPORTANTE**  
 La aplicación ya tiene Firebase implementado. Solo necesitan descargar el código y configurarlo en sus computadoras para comenzar a trabajar.  
 
+### 🔥 **Acceso a Stripe**  
+https://dashboard.stripe.com/test/dashboard
+
