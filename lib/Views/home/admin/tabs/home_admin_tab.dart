@@ -1,11 +1,11 @@
 import 'package:barber_link/Theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:barber_link/Views/Widgets/botonConIcono.dart';
-import 'package:barber_link/Views/home/homeAdmin_ManageComerce.dart'; // Importa la página de ManageComerce
+import 'package:barber_link/Views/Widgets/boton_con_icono.dart';
+import 'package:barber_link/Views/home/comerce/home_admin_comerce.dart'; // Importa la página de ManageComerce
 
-class HomeAdminHomeTab extends StatelessWidget {
-  const HomeAdminHomeTab({super.key});
+class HomeAdminTab extends StatelessWidget {
+  const HomeAdminTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +43,14 @@ class HomeAdminHomeTab extends StatelessWidget {
           const SizedBox(height: 20),
 
           // Texto de opciones de administración
-          Text(
-            'Opciones de Administración',
-            style: GoogleFonts.jua(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: AppColors().azulMorado,
+          Center(
+            child: Text(
+              'Opciones de Administración',
+              style: GoogleFonts.jua(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: AppColors().azulMorado,
+              ),
             ),
           ),
           const SizedBox(height: 50),
@@ -59,17 +61,17 @@ class HomeAdminHomeTab extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => const HomeAdminManageComerce(),
-                  ),
+                  MaterialPageRoute(builder: (context) => const HomeComerce()),
                 );
               },
-              icon: const Icon(Icons.store, color: Colors.white), // Ícono del botón
+              icon: const Icon(
+                Icons.store,
+                color: Colors.white,
+              ), // Ícono del botón
               label: 'Gestionar Comercios', // Texto del botón
             ),
           ),
           const SizedBox(height: 50), // Separación de 50px
-
           // Botón para gestionar membresías
           Center(
             child: BotonConIcono(
@@ -78,12 +80,14 @@ class HomeAdminHomeTab extends StatelessWidget {
                   const SnackBar(content: Text('Función en desarrollo')),
                 );
               },
-              icon: const Icon(Icons.attach_money, color: Colors.white), // Ícono del botón
+              icon: const Icon(
+                Icons.attach_money,
+                color: Colors.white,
+              ), // Ícono del botón
               label: 'Gestionar Membresías', // Texto del botón
             ),
           ),
           const SizedBox(height: 50), // Separación de 50px
-
           // Botón para gestionar usuarios
           Center(
             child: BotonConIcono(
@@ -92,12 +96,14 @@ class HomeAdminHomeTab extends StatelessWidget {
                   const SnackBar(content: Text('Función en desarrollo')),
                 );
               },
-              icon: const Icon(Icons.group, color: Colors.white), // Ícono del botón
+              icon: const Icon(
+                Icons.group,
+                color: Colors.white,
+              ), // Ícono del botón
               label: 'Gestionar Usuarios', // Texto del botón
             ),
           ),
           const SizedBox(height: 50), // Separación de 50px
-
           // Texto debajo de los botones
           Center(
             child: Text(

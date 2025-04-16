@@ -27,14 +27,20 @@ class InfoCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(icon, color: AppColors().azulMorado), // Ícono con color principal
+              Icon(
+                icon,
+                color: AppColors().azulMorado,
+              ), // Ícono con color principal
               const SizedBox(width: 8), // Espaciado entre ícono y texto
-              Text(
-                title,
-                style: GoogleFonts.inter(
-                  fontSize: 14, // Tamaño reducido para el título
-                  fontWeight: FontWeight.bold,
-                  color: Colors.grey[800], // Color del texto del título
+              Flexible(
+                child: Text(
+                  title,
+                  style: GoogleFonts.inter(
+                    fontSize: 17, // Tamaño reducido para el título
+                    fontWeight: FontWeight.bold,
+
+                    color: Colors.grey[800], // Color del texto del título
+                  ),
                 ),
               ),
             ],
@@ -43,10 +49,11 @@ class InfoCard extends StatelessWidget {
           Text(
             value,
             style: GoogleFonts.inter(
-              fontSize: 12, // Tamaño reducido para el valor
+              fontSize: 15, // Tamaño reducido para el valor
               color: Colors.grey[700], // Color del texto del valor
             ),
-            overflow: TextOverflow.ellipsis, // Muestra "..." si el texto es muy largo
+            overflow:
+                TextOverflow.ellipsis, // Muestra "..." si el texto es muy largo
             maxLines: 2, // Limita el texto a 2 líneas
             softWrap: true, // Permite que el texto se ajuste automáticamente
           ),

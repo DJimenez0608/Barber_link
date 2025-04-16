@@ -1,10 +1,10 @@
 import 'package:barber_link/Theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:barber_link/Views/Widgets/botonConIcono.dart';
+import 'package:barber_link/Views/Widgets/boton_con_icono.dart';
 
-class HomeAdminManageComerce extends StatelessWidget {
-  const HomeAdminManageComerce({super.key});
+class HomeComerce extends StatelessWidget {
+  const HomeComerce({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -58,10 +58,15 @@ class HomeAdminManageComerce extends StatelessWidget {
               child: BotonConIcono(
                 onTap: () {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Función en desarrollo: Eliminar Comercio')),
+                    const SnackBar(
+                      content: Text('Función en desarrollo: Eliminar Comercio'),
+                    ),
                   );
                 },
-                icon: const Icon(Icons.delete, color: Colors.white), // Ícono coherente
+                icon: const Icon(
+                  Icons.delete,
+                  color: Colors.white,
+                ), // Ícono coherente
                 label: 'Eliminar Comercio',
               ),
             ),
@@ -72,10 +77,17 @@ class HomeAdminManageComerce extends StatelessWidget {
               child: BotonConIcono(
                 onTap: () {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Función en desarrollo: Consultar Comercios')),
+                    const SnackBar(
+                      content: Text(
+                        'Función en desarrollo: Consultar Comercios',
+                      ),
+                    ),
                   );
                 },
-                icon: const Icon(Icons.search, color: Colors.white), // Ícono coherente
+                icon: const Icon(
+                  Icons.search,
+                  color: Colors.white,
+                ), // Ícono coherente
                 label: 'Consultar Comercios',
               ),
             ),

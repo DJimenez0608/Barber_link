@@ -1,4 +1,3 @@
-import 'package:barber_link/Routes/routes.dart';
 import 'package:barber_link/Theme/app_colors.dart';
 import 'package:barber_link/Views/Widgets/boton.dart';
 import 'package:barber_link/Views/sign_in/sign_in_view.dart';
@@ -35,7 +34,7 @@ class SelectRegisterTypeView extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 40),
-              
+
               // Botón Cliente
               Boton(
                 label: 'Soy Cliente',
@@ -43,13 +42,14 @@ class SelectRegisterTypeView extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const SignInView(tipoUsuario: 'cliente'),
+                      builder:
+                          (context) => const SignInView(tipoUsuario: 'cliente'),
                     ),
                   );
                 },
               ),
               SizedBox(height: 20),
-              
+
               /*// Botón Administrador
                Boton(
                 label: 'Soy Administrador',
@@ -63,15 +63,17 @@ class SelectRegisterTypeView extends StatelessWidget {
                 },
               ),
               SizedBox(height: 20),*/
-              
+
               // Botón Comercio
-               Boton(
+              Boton(
                 label: 'Soy Comercio',
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const SignInView(tipoUsuario: 'comercio'),
+                      builder:
+                          (context) =>
+                              const SignInView(tipoUsuario: 'comercio'),
                     ),
                   );
                 },
@@ -80,10 +82,7 @@ class SelectRegisterTypeView extends StatelessWidget {
 
               Text(
                 'Selecciona el tipo de cuenta que mejor se adapte a tus necesidades',
-                style: GoogleFonts.inter(
-                  fontSize: 14,
-                  color: Colors.grey[600],
-                ),
+                style: GoogleFonts.inter(fontSize: 14, color: Colors.grey[600]),
                 textAlign: TextAlign.center,
               ),
             ],

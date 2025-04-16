@@ -1,11 +1,11 @@
 import 'package:barber_link/Theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:barber_link/ViewModels/auth/home_admin_viewmodel.dart';
+import 'package:barber_link/ViewModels/fireStroe/home_admin_viewmodel.dart';
 import 'package:barber_link/Views/Widgets/info_card.dart';
 
-class HomeAdminProfileTab extends StatelessWidget {
-  const HomeAdminProfileTab({super.key});
+class ProfileClientTab extends StatelessWidget {
+  const ProfileClientTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +30,19 @@ class HomeAdminProfileTab extends StatelessWidget {
         final user = snapshot.data!;
         return Padding(
           padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: ListView(
             children: [
+              Center(
+                child: Container(
+                  height: 120,
+                  width: 120,
+
+                  decoration: BoxDecoration(
+                    color: AppColors().negro,
+                    borderRadius: BorderRadius.circular(60),
+                  ),
+                ),
+              ),
               // Nombre del usuario
               Center(
                 child: Text(
@@ -48,7 +58,7 @@ class HomeAdminProfileTab extends StatelessWidget {
 
               // Información adicional
               Text(
-                'Información adicional:',
+                'Información Personal:',
                 style: GoogleFonts.inter(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -87,6 +97,32 @@ class HomeAdminProfileTab extends StatelessWidget {
                   ),
                 ],
               ),
+              SizedBox(height: 30),
+              Text(
+                'Historial de servicios:',
+                style: GoogleFonts.inter(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey[800],
+                ),
+              ),
+
+              Column(
+                children: [
+                  Container(height: 40, color: Colors.grey[300]),
+                  SizedBox(height: 10),
+                  Container(height: 40, color: Colors.grey[300]),
+                  SizedBox(height: 10),
+                  Container(height: 40, color: Colors.grey[300]),
+                  SizedBox(height: 10),
+                  Container(height: 40, color: Colors.grey[300]),
+                  SizedBox(height: 10),
+                  Container(height: 40, color: Colors.grey[300]),
+                  SizedBox(height: 10),
+                  Container(height: 40, color: Colors.grey[300]),
+                ],
+              ),
+              SizedBox(height: 50),
             ],
           ),
         );

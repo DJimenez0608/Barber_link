@@ -11,12 +11,26 @@ class AuthViewModel extends ChangeNotifier {
   String? get errorMessage => _errorMessage;
 
   // REGISTRAR USUARIO
-  Future<void> registerUser(String email, String password, String nombre, String direccion, String celular, String tipoUsuario) async {
+  Future<void> registerUser(
+    String email,
+    String password,
+    String nombre,
+    String direccion,
+    String celular,
+    String tipoUsuario,
+  ) async {
     _isLoading = true;
     notifyListeners();
 
     try {
-      await _authRepository.createUserEmailPassword(email, password, nombre, direccion, celular, tipoUsuario);
+      await _authRepository.createUserEmailPassword(
+        email,
+        password,
+        nombre,
+        direccion,
+        celular,
+        tipoUsuario,
+      );
       _errorMessage = null;
     } catch (e) {
       _errorMessage = e.toString(); // Captura el mensaje detallado
@@ -24,7 +38,7 @@ class AuthViewModel extends ChangeNotifier {
 
     _isLoading = false;
     notifyListeners();
-  } 
+  }
 
   Future<void> logInUser(String email, String password) async {
     _isLoading = true;
@@ -39,6 +53,28 @@ class AuthViewModel extends ChangeNotifier {
       rethrow; // Lanza el error para manejarlo en la vista
     } finally {
       _isLoading = false;
+      notifyListeners();
+    }
+  }
+
+  Future<void> logOut() async {
+    try {
+      await _authRepository.logOut();
+      _errorMessage = null;
+      notifyListeners();
+    } catch (e) {
+      _errorMessage = e.toString();
+      notifyListeners();
+    }
+  }
+
+  Future<void> changePassword(String newPassword) async {
+    try {
+      await _authRepository.changePassword(newPassword);
+      _errorMessage = null;
+      notifyListeners();
+    } catch (e) {
+      _errorMessage = e.toString();
       notifyListeners();
     }
   }

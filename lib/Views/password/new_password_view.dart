@@ -3,14 +3,14 @@ import 'package:barber_link/Views/Widgets/boton.dart';
 import 'package:barber_link/Views/Widgets/form_field.dart';
 import 'package:flutter/material.dart';
 
-class NewPassword extends StatefulWidget {
-  const NewPassword({super.key});
+class NewPasswordView extends StatefulWidget {
+  const NewPasswordView({super.key});
 
   @override
-  State<NewPassword> createState() => _NewPasswordState();
+  State<NewPasswordView> createState() => _NewPasswordViewState();
 }
 
-class _NewPasswordState extends State<NewPassword> {
+class _NewPasswordViewState extends State<NewPasswordView> {
   TextEditingController emailController = TextEditingController();
 
   @override

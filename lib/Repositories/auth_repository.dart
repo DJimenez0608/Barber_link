@@ -7,7 +7,13 @@ class AuthRepository {
 
   // REGISTRO DE USUARIO CORREO/CONTRASEÑA
   Future<void> createUserEmailPassword(
-      String email, String password, String nombre, String direccion, String celular, String tipoUsuario) async {
+    String email,
+    String password,
+    String nombre,
+    String direccion,
+    String celular,
+    String tipoUsuario,
+  ) async {
     try {
       // Crear usuario en Firebase Authentication
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(
@@ -16,22 +22,22 @@ class AuthRepository {
       );
 
       try {
-      // Guardar datos adicionales en Firestore
-      await firestore.collection('users').doc(userCredential.user!.uid).set({
-        'email': email,
-        'nombre': nombre,
-        'direccion': direccion,
-        'celular': celular,
-        'tipoUsuario': tipoUsuario, // Guardar el tipo de usuario (cliente o comercio)
-        'createdAt': FieldValue.serverTimestamp(),
-      });
-    } catch (e) {
-      // Si falla Firestore, elimina al usuario
-      await userCredential.user!.delete();
-      throw 'Error al guardar los datos en Firestore: $e';
-    }
-
-   } on FirebaseAuthException catch (e) {
+        // Guardar datos adicionales en Firestore
+        await firestore.collection('users').doc(userCredential.user!.uid).set({
+          'email': email,
+          'nombre': nombre,
+          'direccion': direccion,
+          'celular': celular,
+          'tipoUsuario':
+              tipoUsuario, // Guardar el tipo de usuario (cliente o comercio)
+          'createdAt': FieldValue.serverTimestamp(),
+        });
+      } catch (e) {
+        // Si falla Firestore, elimina al usuario
+        await userCredential.user!.delete();
+        throw 'Error al guardar los datos en Firestore: $e';
+      }
+    } on FirebaseAuthException catch (e) {
       switch (e.code) {
         case 'weak-password':
           throw 'La contraseña debe tener al menos 6 caracteres y combinar letras, números o símbolos.';
@@ -51,7 +57,9 @@ class AuthRepository {
       // Autenticar al usuario con correo y contraseña
       await auth.signInWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
-      print('Codigo de error: ${e.code}, ${e.message}, ${e.toString()}'); // Imprime el código de error para depuración
+      print(
+        'Codigo de error: ${e.code}, ${e.message}, ${e.toString()}',
+      ); // Imprime el código de error para depuración
       switch (e.code) {
         /*case 'user-not-found':
           throw 'No se encontró un usuario con este correo.';*/
@@ -67,6 +75,24 @@ class AuthRepository {
     } catch (e) {
       // Manejo de cualquier otro error inesperado
       throw 'Ocurrió un error al iniciar sesión: $e';
+    }
+  }
+
+  //LOG OUT UN USUARIO
+  Future<void> logOut() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+    } catch (e) {
+      throw 'Error al cerrar sesión: $e';
+    }
+  }
+
+  //CAMBIAR CONTRASEÑA
+  Future<void> changePassword(String newPassword) async {
+    try {
+      await auth.currentUser?.updatePassword(newPassword);
+    } catch (e) {
+      throw 'Error al cambiar la contraseña : $e';
     }
   }
 }

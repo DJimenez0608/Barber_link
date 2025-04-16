@@ -1,13 +1,12 @@
+import 'package:barber_link/Routes/routes.dart';
 import 'package:barber_link/Theme/app_colors.dart';
+import 'package:barber_link/Views/home/admin/tabs/configuration_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:barber_link/ViewModels/auth/home_admin_viewmodel.dart';
-import 'package:barber_link/Views/home/home_admin_page.dart';
-import 'package:barber_link/Views/profile/profile_admin_page.dart';
-
+import 'package:barber_link/ViewModels/fireStroe/home_admin_viewmodel.dart';
+import 'package:barber_link/Views/home/admin/tabs/home_admin_tab.dart';
+import 'package:barber_link/Views/home/admin/tabs/profile_tab.dart';
 
 class HomeAdminView extends StatelessWidget {
   const HomeAdminView({super.key});
@@ -22,7 +21,7 @@ class HomeAdminView extends StatelessWidget {
 }
 
 class _HomeAdminViewContent extends StatefulWidget {
-  const _HomeAdminViewContent({super.key});
+  const _HomeAdminViewContent();
 
   @override
   State<_HomeAdminViewContent> createState() => _HomeAdminViewContentState();
@@ -47,9 +46,7 @@ class _HomeAdminViewContentState extends State<_HomeAdminViewContent> {
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
-              decoration: BoxDecoration(
-                color: AppColors().azulMorado,
-              ),
+              decoration: BoxDecoration(color: AppColors().azulMorado),
               child: Center(
                 child: Text(
                   'Menú de Administrador',
@@ -68,7 +65,7 @@ class _HomeAdminViewContentState extends State<_HomeAdminViewContent> {
               ),
               onTap: () async {
                 await viewModel.signOut();
-                Navigator.pushReplacementNamed(context, '/log-in');
+                Navigator.pushReplacementNamed(context, Routes.logIn);
               },
             ),
           ],
@@ -77,11 +74,7 @@ class _HomeAdminViewContentState extends State<_HomeAdminViewContent> {
       body: Center(
         child: IndexedStack(
           index: viewModel.selectedIndex,
-          children: const [
-            Text('Configuraciones'),
-            HomeAdminHomeTab(),
-            HomeAdminProfileTab(),
-          ],
+          children: const [ConfigurationTab(), HomeAdminTab(), ProfileTab()],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -93,14 +86,8 @@ class _HomeAdminViewContentState extends State<_HomeAdminViewContent> {
             icon: Icon(Icons.settings),
             label: 'Configuraciones',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Casa',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Perfil',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Casa'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Perfil'),
         ],
         selectedItemColor: AppColors().blanco,
         unselectedItemColor: Colors.grey[400],
