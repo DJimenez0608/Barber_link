@@ -60,7 +60,7 @@ class _LogInViewState extends State<LogInView> {
       if (tipoUsuario == 'cliente') {
         Navigator.pushReplacementNamed(context, Routes.home);
         //Navigator.pushReplacementNamed(context, Routes.homeClient);
-      } else if (tipoUsuario == 'comercio ') {
+      } else if (tipoUsuario == 'comercio') {
         Navigator.pushReplacementNamed(context, Routes.home);
         //Navigator.pushReplacementNamed(context, Route.homeComerce);
       } else if (tipoUsuario == 'administrador') {

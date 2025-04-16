@@ -36,7 +36,7 @@ class HomeAdminViewModel extends ChangeNotifier {
           .get();
 
       if (doc.exists) {
-        return UserModel.fromFirestore(doc.data()!);
+        return UserModel.fromFirestore(doc.id, doc.data()!);
       }
     } catch (e) {
       print('Error al obtener datos del usuario: $e');

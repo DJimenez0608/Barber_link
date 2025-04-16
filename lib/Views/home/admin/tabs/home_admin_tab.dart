@@ -1,8 +1,9 @@
 import 'package:barber_link/Theme/app_colors.dart';
+import 'package:barber_link/Views/home/admin/manague_comerce/home_admin_comerce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:barber_link/Views/Widgets/boton_con_icono.dart';
-import 'package:barber_link/Views/home/comerce/home_admin_comerce.dart'; // Importa la página de ManageComerce
+import 'package:barber_link/Routes/routes.dart';
 
 class HomeAdminTab extends StatelessWidget {
   const HomeAdminTab({super.key});
@@ -61,7 +62,9 @@ class HomeAdminTab extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const HomeComerce()),
+                  MaterialPageRoute(
+                    builder: (context) => const HomeAdminComerce(),
+                  ),
                 );
               },
               icon: const Icon(
