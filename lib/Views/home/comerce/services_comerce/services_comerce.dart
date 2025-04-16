@@ -6,13 +6,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class ServicesComerce extends StatelessWidget {
-  const ServicesComerce({super.key});
+  final String comercioId;
+
+  const ServicesComerce({super.key, required this.comercioId});
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => ServicesComerceModel(),
-      child: _ServiceComerceContent(),
+      create: (context) => ServicesComerceModel(comercioId: comercioId),
+      child: const _ServiceComerceContent(),
     );
   }
 }

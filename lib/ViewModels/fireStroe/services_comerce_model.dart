@@ -6,8 +6,9 @@ import 'package:barber_link/Theme/app_colors.dart';
 class ServicesComerceModel extends ChangeNotifier {
   final List<ServiciosComercio> _services = [];
   List<ServiciosComercio> filteredServices = [];
+  final String comercioId;
 
-  ServicesComerceModel() {
+  ServicesComerceModel({required this.comercioId}) {
     fetchServices();
   }
 
@@ -16,6 +17,7 @@ class ServicesComerceModel extends ChangeNotifier {
     try {
       final querySnapshot = await FirebaseFirestore.instance
           .collection('services')
+          .where('comercioId', isEqualTo: comercioId)
           .get();
 
       _services.clear();
@@ -64,6 +66,7 @@ class ServicesComerceModel extends ChangeNotifier {
           'nombre': nombre,
           'precio': precio,
           'duracion': duracion,
+          'comercioId': comercioId,
         });
         fetchServices();
       },
