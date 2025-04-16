@@ -45,7 +45,20 @@ class HomeAdminComerceViewModel extends ChangeNotifier {
   // Eliminar comercio
   Future<void> deleteCommerce(String commerceId) async {
     try {
+      // Eliminar el comercio de la colección 'users'
       await FirebaseFirestore.instance.collection('users').doc(commerceId).delete();
+
+      // Eliminar los servicios realcionados con el comercio
+      final servicesSnapshot = await FirebaseFirestore.instance
+        .collection('services')
+        .where('comercioId', isEqualTo: commerceId)
+        .get();
+      
+      for (var doc in servicesSnapshot.docs) {
+        await FirebaseFirestore.instance.collection('services').doc(doc.id).delete();
+      }
+
+      //Actualizar la lista local de comercios
       _commerces.removeWhere((commerce) => commerce.id == commerceId);
       filteredCommerces.removeWhere((commerce) => commerce.id == commerceId);
       notifyListeners();
