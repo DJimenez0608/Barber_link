@@ -1,4 +1,4 @@
-import 'package:barber_link/Repositories/auth_repository.dart';
+import 'package:barber_link/Repositories/auth/auth_repository.dart';
 import 'package:flutter/material.dart';
 
 class AuthViewModel extends ChangeNotifier {

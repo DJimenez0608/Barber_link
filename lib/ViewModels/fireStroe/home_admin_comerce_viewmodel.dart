@@ -13,10 +13,11 @@ class HomeAdminComerceViewModel extends ChangeNotifier {
   // Obtener comercios desde Firestore
   Future<void> fetchCommerces() async {
     try {
-      final querySnapshot = await FirebaseFirestore.instance
-          .collection('users')
-          .where('tipoUsuario', isEqualTo: 'comercio')
-          .get();
+      final querySnapshot =
+          await FirebaseFirestore.instance
+              .collection('users')
+              .where('tipoUsuario', isEqualTo: 'comercio')
+              .get();
 
       _commerces.clear();
       for (var doc in querySnapshot.docs) {
@@ -34,10 +35,14 @@ class HomeAdminComerceViewModel extends ChangeNotifier {
     if (query.isEmpty) {
       filteredCommerces = List.from(_commerces);
     } else {
-      filteredCommerces = _commerces
-          .where((commerce) =>
-              commerce.nombre!.toLowerCase().contains(query.toLowerCase()))
-          .toList();
+      filteredCommerces =
+          _commerces
+              .where(
+                (commerce) => commerce.nombre!.toLowerCase().contains(
+                  query.toLowerCase(),
+                ),
+              )
+              .toList();
     }
     notifyListeners();
   }
@@ -46,16 +51,23 @@ class HomeAdminComerceViewModel extends ChangeNotifier {
   Future<void> deleteCommerce(String commerceId) async {
     try {
       // Eliminar el comercio de la colección 'users'
-      await FirebaseFirestore.instance.collection('users').doc(commerceId).delete();
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(commerceId)
+          .delete();
 
       // Eliminar los servicios realcionados con el comercio
-      final servicesSnapshot = await FirebaseFirestore.instance
-        .collection('services')
-        .where('comercioId', isEqualTo: commerceId)
-        .get();
-      
+      final servicesSnapshot =
+          await FirebaseFirestore.instance
+              .collection('services')
+              .where('comercioId', isEqualTo: commerceId)
+              .get();
+
       for (var doc in servicesSnapshot.docs) {
-        await FirebaseFirestore.instance.collection('services').doc(doc.id).delete();
+        await FirebaseFirestore.instance
+            .collection('services')
+            .doc(doc.id)
+            .delete();
       }
 
       //Actualizar la lista local de comercios

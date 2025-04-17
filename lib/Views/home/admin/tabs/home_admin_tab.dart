@@ -3,7 +3,6 @@ import 'package:barber_link/Views/home/admin/manague_comerce/home_admin_comerce.
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:barber_link/Views/Widgets/boton_con_icono.dart';
-import 'package:barber_link/Routes/routes.dart';
 
 class HomeAdminTab extends StatelessWidget {
   const HomeAdminTab({super.key});
@@ -26,7 +25,7 @@ class HomeAdminTab extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
 
           // Imagen del bigote
           Center(
@@ -34,14 +33,24 @@ class HomeAdminTab extends StatelessWidget {
               alignment: Alignment.topCenter,
               children: [
                 Image.asset(
-                  'assets/Images/bigote.png',
+                  'assets/Images/sombrero.png',
                   height: 100,
                   width: 100,
+                ),
+                SizedBox(
+                  height: 150,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Image.asset(
+                      'assets/Images/bigote.png',
+                      height: 100,
+                      width: 100,
+                    ),
+                  ),
                 ),
               ],
             ),
           ),
-          const SizedBox(height: 20),
 
           // Texto de opciones de administración
           Center(

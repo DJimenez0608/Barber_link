@@ -34,7 +34,16 @@ class HomeClientTab extends StatelessWidget {
           SizedBox(height: 10),
           Text('Servicios disponbles: ', style: TextStyle(fontSize: 18)),
 
-          PagarServicio(value: 10),
+          PagarServicio(
+            value: 10,
+            label: 'Corte de pelo PREMIUM',
+            image: 'assets/Images/corte.png',
+          ),
+          PagarServicio(
+            value: 5,
+            label: 'Corte de pelo CLASICO',
+            image: 'assets/Images/clasico.png',
+          ),
         ],
       ),
     );

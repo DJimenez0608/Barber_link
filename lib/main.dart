@@ -1,5 +1,6 @@
 import 'package:barber_link/Routes/app_routes.dart';
 import 'package:barber_link/ViewModels/auth/auth_view_model.dart';
+import 'package:barber_link/ViewModels/fireStroe/home_admin_comerce_viewmodel.dart';
 import 'package:barber_link/ViewModels/fireStroe/home_admin_viewmodel.dart';
 import 'package:barber_link/ViewModels/stripe/stripe_payment_view_model.dart';
 import 'package:barber_link/ViewModels/stripe/stripe_view_model.dart';
@@ -33,6 +34,7 @@ Future<void> main() async {
         ChangeNotifierProvider(create: (_) => AuthViewModel()),
         ChangeNotifierProvider(create: (_) => StripeViewModel()),
         ChangeNotifierProvider(create: (_) => HomeAdminViewModel()),
+        ChangeNotifierProvider(create: (_) => HomeAdminComerceViewModel()),
         ChangeNotifierProvider(create: (_) => StripePaymentViewModel()),
       ],
       child: const MyApp(),

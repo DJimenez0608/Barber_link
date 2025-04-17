@@ -38,12 +38,18 @@ class ServiceCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    'Precio: \$${service.precio ?? '0.00'}',
-                    style: GoogleFonts.inter(fontSize: 14, color: Colors.grey[700]),
+                    'Precio: \$${service.precio}',
+                    style: GoogleFonts.inter(
+                      fontSize: 14,
+                      color: Colors.grey[700],
+                    ),
                   ),
                   Text(
                     'Duración: ${service.duracion} min',
-                    style: GoogleFonts.inter(fontSize: 14, color: Colors.grey[700]),
+                    style: GoogleFonts.inter(
+                      fontSize: 14,
+                      color: Colors.grey[700],
+                    ),
                   ),
                 ],
               ),
