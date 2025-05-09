@@ -22,7 +22,7 @@ class _SignInViewState extends State<SignInView> {
   final TextEditingController celular = TextEditingController();
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
-  
+
   @override
   void dispose() {
     nombre.dispose();
@@ -47,13 +47,29 @@ class _SignInViewState extends State<SignInView> {
       body: Column(
         children: [
           SizedBox(height: 20),
-          CustomFormField(controller: nombre, label: 'Nombre'),
+          CustomFormField(
+            controller: nombre,
+            label: 'Nombre',
+            obscureText: false,
+          ),
           SizedBox(height: 20),
-          CustomFormField(controller: direccion, label: 'Dirección'),
+          CustomFormField(
+            controller: direccion,
+            label: 'Dirección',
+            obscureText: false,
+          ),
           SizedBox(height: 20),
-          CustomFormField(controller: celular, label: 'Número celular'),
+          CustomFormField(
+            controller: celular,
+            label: 'Número celular',
+            obscureText: false,
+          ),
           SizedBox(height: 20),
-          CustomFormField(controller: email, label: 'Correo electronico'),
+          CustomFormField(
+            controller: email,
+            label: 'Correo electronico',
+            obscureText: false,
+          ),
           SizedBox(height: 20),
           CustomFormField(controller: password, label: 'Contraseña'),
           SizedBox(height: 40),
@@ -81,8 +97,8 @@ class _SignInViewState extends State<SignInView> {
               } else {
                 showDialog(
                   context: context,
-                  builder: (BuildContext context) =>
-                      CustomAlertDialog(mensaje: e),
+                  builder:
+                      (BuildContext context) => CustomAlertDialog(mensaje: e),
                 );
               }
             },

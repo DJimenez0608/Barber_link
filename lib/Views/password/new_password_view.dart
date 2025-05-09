@@ -29,6 +29,7 @@ class _NewPasswordViewState extends State<NewPasswordView> {
           CustomFormField(
             controller: emailController,
             label: 'Email registrado',
+            obscureText: false,
           ),
           SizedBox(height: 20),
           CustomFormField(

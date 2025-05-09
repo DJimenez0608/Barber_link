@@ -146,6 +146,7 @@ class _LogInViewState extends State<LogInView> {
                   CustomFormField(
                     label: 'Usuario',
                     controller: _userController,
+                    obscureText: false,
                   ),
 
                   SizedBox(height: 15),
