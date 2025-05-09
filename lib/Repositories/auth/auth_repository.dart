@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthRepository {
   final auth = FirebaseAuth.instance;
@@ -93,6 +94,30 @@ class AuthRepository {
       await auth.currentUser?.updatePassword(newPassword);
     } catch (e) {
       throw 'Error al cambiar la contraseña : $e';
+    }
+  }
+
+  //INGRESAR CON GOOGLE
+  Future<UserCredential?> signInWithGoogle() async {
+    try {
+      //ACTIVACION DEL FLUJO DE AUTENTICACION
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+      //OBTENER LOS DETALLE DE AUTENTICACION
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
+
+      //CREAR UNA CREDENCIAL NUEVA
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+      print(credential);
+
+      //UNA VEZ INICIAI SESION RETORNAMOS EL USERCREDENTIAL
+      return await auth.signInWithCredential(credential);
+    } catch (e) {
+      throw 'Error al iniciar sesion con Google: $e';
     }
   }
 }

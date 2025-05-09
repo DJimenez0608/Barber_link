@@ -78,4 +78,15 @@ class AuthViewModel extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  Future<void> signInWithGoogle() async {
+    try {
+      await _authRepository.signInWithGoogle();
+      _errorMessage = null;
+      notifyListeners();
+    } catch (e) {
+      _errorMessage = e.toString();
+      notifyListeners();
+    }
+  }
 }

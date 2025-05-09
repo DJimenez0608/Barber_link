@@ -224,7 +224,16 @@ class _LogInViewState extends State<LogInView> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.asset('assets/Icons/google.png'),
+                          GestureDetector(
+                            child: Image.asset('assets/Icons/google.png'),
+                            onTap: () async {
+                              final provider = context.read<AuthViewModel>();
+                              await provider.signInWithGoogle();
+                              print(
+                                '---------------------------------------------------------${provider.errorMessage}',
+                              );
+                            },
+                          ),
                           SizedBox(width: 10),
                           Image.asset('assets/Icons/FaceebookLogo.png'),
                         ],
