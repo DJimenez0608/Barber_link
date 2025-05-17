@@ -1,5 +1,6 @@
 import 'package:barber_link/Theme/app_colors.dart';
 import 'package:barber_link/Views/Widgets/boton.dart';
+import 'package:barber_link/Views/sign_in/formularioSociedadView.dart';
 import 'package:barber_link/Views/sign_in/sign_in_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -48,7 +49,7 @@ class SelectRegisterTypeView extends StatelessWidget {
                   );
                 },
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 15),
 
               /*// Botón Administrador
                Boton(
@@ -66,14 +67,12 @@ class SelectRegisterTypeView extends StatelessWidget {
 
               // Botón Comercio
               Boton(
-                label: 'Soy Comercio',
+                label: 'Soy un comercio',
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder:
-                          (context) =>
-                              const SignInView(tipoUsuario: 'comercio'),
+                      builder: (context) => const FormularioSociedadView(),
                     ),
                   );
                 },
