@@ -1,15 +1,14 @@
 class ServiciosComercio {
   final String id;
   final String? nombre;
-  final int precio;
+  final String? precio;
   final String? duracion;
-  final String?
-  comercioId; // Nuevo atributo para relacionar el servicio con un comercio
+  final String? comercioId; // Nuevo atributo para relacionar el servicio con un comercio
 
   ServiciosComercio({
     required this.id,
     this.nombre,
-    required this.precio,
+    this.precio,
     this.duracion,
     this.comercioId,
   });
@@ -21,7 +20,7 @@ class ServiciosComercio {
     return ServiciosComercio(
       id: docId,
       nombre: data['nombre'],
-      precio: data['precio'],
+      precio: data['precio']?.toString(),
       duracion: data['duracion'],
       comercioId: data['comercioId'], // Asignar el comercioId desde Firestore
     );
