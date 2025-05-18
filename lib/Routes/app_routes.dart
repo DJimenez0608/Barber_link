@@ -1,14 +1,17 @@
 import 'package:barber_link/Routes/routes.dart';
-import 'package:barber_link/Views/home/client/home_client_view.dart';
-import 'package:barber_link/Views/logIn/log_in_view.dart';
-import 'package:barber_link/Views/password/new_password_view.dart';
-import 'package:barber_link/Views/sign_in/sign_in_view.dart';
-import 'package:flutter/widgets.dart';
-import 'package:barber_link/Views/home/admin/home_admin_view.dart';
-import 'package:barber_link/Views/home/admin/manague_comerce/home_admin_comerce.dart';
-import 'package:barber_link/Views/home/comerce/home_comerce_view.dart';
+ import 'package:barber_link/Views/home/client/home_client_view.dart';
+ import 'package:barber_link/Views/logIn/log_in_view.dart';
+ import 'package:barber_link/Views/password/new_password_view.dart';
+ import 'package:barber_link/Views/sign_in/sign_in_view.dart';
+ import 'package:flutter/widgets.dart';
+ import 'package:flutter/material.dart';
+ import 'package:barber_link/Views/home/admin/home_admin_view.dart';
+ import 'package:barber_link/Views/home/admin/manague_comerce/home_admin_comerce.dart';
+ import 'package:barber_link/Views/home/comerce/home_comerce_view.dart';
+ import 'package:barber_link/Views/logIn/log_in_comercio_view.dart'; // Import the new view
+ 
 
-Map<String, Widget Function(BuildContext)> get appRoutes {
+ Map<String, Widget Function(BuildContext)> get appRoutes {
   return {
     Routes.home: (context) => const HomeClientView(),
     //Routes.homeClient: (context) => const HomeClientView(),
@@ -18,5 +21,6 @@ Map<String, Widget Function(BuildContext)> get appRoutes {
     Routes.signIn: (context) => const SignInView(tipoUsuario: 'administrador'),
     Routes.logIn: (context) => const LogInView(),
     Routes.newPassword: (context) => const NewPasswordView(),
+    Routes.logInComercio: (context) => const LogInComercioView(), // Add the new route
   };
-}
+ }

@@ -46,6 +46,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '379548823363',
     projectId: 'barberlink-a4f23',
     authDomain: 'barberlink-a4f23.firebaseapp.com',
+    databaseURL: 'https://barberlink-a4f23-default-rtdb.firebaseio.com',
     storageBucket: 'barberlink-a4f23.firebasestorage.app',
     measurementId: 'G-CBSR2L5L4R',
   );
@@ -55,6 +56,7 @@ class DefaultFirebaseOptions {
     appId: '1:379548823363:android:6d3c9f5f64465bad5cc9f6',
     messagingSenderId: '379548823363',
     projectId: 'barberlink-a4f23',
+    databaseURL: 'https://barberlink-a4f23-default-rtdb.firebaseio.com',
     storageBucket: 'barberlink-a4f23.firebasestorage.app',
   );
 
@@ -63,7 +65,10 @@ class DefaultFirebaseOptions {
     appId: '1:379548823363:ios:a8f79f19be1877785cc9f6',
     messagingSenderId: '379548823363',
     projectId: 'barberlink-a4f23',
+    databaseURL: 'https://barberlink-a4f23-default-rtdb.firebaseio.com',
     storageBucket: 'barberlink-a4f23.firebasestorage.app',
+    androidClientId: '379548823363-9276n84f2kbu62p4l5o3sc691u15b7kr.apps.googleusercontent.com',
+    iosClientId: '379548823363-s8vmjhs23fdfbvqdgu2u8j0f1d723j45.apps.googleusercontent.com',
     iosBundleId: 'com.example.barberLink',
   );
 
@@ -72,7 +77,10 @@ class DefaultFirebaseOptions {
     appId: '1:379548823363:ios:a8f79f19be1877785cc9f6',
     messagingSenderId: '379548823363',
     projectId: 'barberlink-a4f23',
+    databaseURL: 'https://barberlink-a4f23-default-rtdb.firebaseio.com',
     storageBucket: 'barberlink-a4f23.firebasestorage.app',
+    androidClientId: '379548823363-9276n84f2kbu62p4l5o3sc691u15b7kr.apps.googleusercontent.com',
+    iosClientId: '379548823363-s8vmjhs23fdfbvqdgu2u8j0f1d723j45.apps.googleusercontent.com',
     iosBundleId: 'com.example.barberLink',
   );
 
@@ -82,7 +90,9 @@ class DefaultFirebaseOptions {
     messagingSenderId: '379548823363',
     projectId: 'barberlink-a4f23',
     authDomain: 'barberlink-a4f23.firebaseapp.com',
+    databaseURL: 'https://barberlink-a4f23-default-rtdb.firebaseio.com',
     storageBucket: 'barberlink-a4f23.firebasestorage.app',
     measurementId: 'G-0J361DWTQW',
   );
+
 }

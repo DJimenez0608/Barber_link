@@ -8,4 +8,5 @@ class Routes {
   static const signIn = '/sign-in';
   static const logIn = '/log-in';
   static const newPassword = '/new_password';
-}
+  static const logInComercio = '/log-in-comercio'; // Add the new route
+ }

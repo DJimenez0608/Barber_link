@@ -1,26 +1,31 @@
-import 'package:barber_link/Routes/routes.dart';
-import 'package:barber_link/Theme/app_colors.dart';
-import 'package:barber_link/Views/Widgets/boton.dart';
-import 'package:barber_link/Views/Widgets/form_field.dart';
-import 'package:barber_link/Views/password/new_password_view.dart';
-import 'package:barber_link/Views/sign_in/select_type_user.dart';
-import 'package:barber_link/ViewModels/auth/auth_view_model.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:provider/provider.dart';
+// ... imports ...
+ import 'package:barber_link/Routes/routes.dart';
+ import 'package:barber_link/Theme/app_colors.dart';
+ import 'package:barber_link/Views/Widgets/boton.dart';
+ import 'package:barber_link/Views/Widgets/form_field.dart';
+ import 'package:barber_link/Views/password/new_password_view.dart';
+ import 'package:barber_link/Views/sign_in/select_type_user.dart';
+ import 'package:barber_link/ViewModels/auth/auth_view_model.dart';
+ import 'package:flutter/material.dart';
+ import 'package:google_fonts/google_fonts.dart';
+ import 'package:firebase_auth/firebase_auth.dart';
+ import 'package:cloud_firestore/cloud_firestore.dart';
+ import 'package:provider/provider.dart';
+ 
 
-class LogInView extends StatefulWidget {
+ class LogInView extends StatefulWidget {
   const LogInView({super.key});
+ 
 
   @override
   State<LogInView> createState() => _LogInViewState();
-}
+ }
+ 
 
-class _LogInViewState extends State<LogInView> {
+ class _LogInViewState extends State<LogInView> {
   final TextEditingController _userController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+ 
 
   Future<void> _logInUser(AuthViewModel authVM) async {
     final email = _userController.text.trim();
@@ -29,7 +34,7 @@ class _LogInViewState extends State<LogInView> {
     if (email.isEmpty || password.isEmpty) {
       _showErrorDialog('Por favor, completa todos los campos. ');
       return;
-    }
+    } 
 
     try {
       await authVM.logInUser(email, password);
@@ -71,7 +76,7 @@ class _LogInViewState extends State<LogInView> {
     } catch (e) {
       _showErrorDialog(e.toString());
     }
-  }
+  } 
 
   void _showErrorDialog(String message) {
     showDialog(
@@ -93,6 +98,7 @@ class _LogInViewState extends State<LogInView> {
   @override
   Widget build(BuildContext context) {
     final authVM = Provider.of<AuthViewModel>(context);
+ 
 
     return GestureDetector(
       onTap: () {
@@ -109,7 +115,7 @@ class _LogInViewState extends State<LogInView> {
                   Stack(
                     alignment: Alignment.topCenter,
                     children: [
-                      //NOMBRE APP
+                      //NOMBRE APPq4
                       Center(
                         child: Text(
                           'BarberLink',
@@ -118,7 +124,7 @@ class _LogInViewState extends State<LogInView> {
                             fontSize: 60,
                           ),
                         ),
-                      ),
+                      ), 
 
                       //IMAGEN BIGOTE
                       Image.asset(
@@ -187,6 +193,14 @@ class _LogInViewState extends State<LogInView> {
                     label: authVM.isLoading ? 'Cargando... ' : 'Iniciar sesión',
                     onTap: authVM.isLoading ? null : () => _logInUser(authVM),
                   ),
+                  SizedBox(height: 20),
+                  Boton(
+                    label: 'Iniciar sesión como comercio',
+                    onTap: () {
+                      Navigator.pushNamed(context, Routes.logInComercio);
+                    },
+                  ),
+ 
 
                   //REGISTRAR NUEVA CUENTA
                   Center(
@@ -248,4 +262,4 @@ class _LogInViewState extends State<LogInView> {
       ),
     );
   }
-}
+ }

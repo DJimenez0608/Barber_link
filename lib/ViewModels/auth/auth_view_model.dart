@@ -10,7 +10,15 @@ class AuthViewModel extends ChangeNotifier {
   bool get isLoading => _isLoading;
   String? get errorMessage => _errorMessage;
 
-  // REGISTRAR USUARIO
+  void _setLoading(bool loading) {
+    _isLoading = loading;
+    notifyListeners();
+  }
+
+  void _setError(String? message) {
+    _errorMessage = message;
+  }
+
   Future<void> registerUser(
     String email,
     String password,
@@ -19,9 +27,8 @@ class AuthViewModel extends ChangeNotifier {
     String celular,
     String tipoUsuario,
   ) async {
-    _isLoading = true;
-    notifyListeners();
-
+    _setLoading(true);
+    _setError(null);
     try {
       await _authRepository.createUserEmailPassword(
         email,
@@ -31,62 +38,72 @@ class AuthViewModel extends ChangeNotifier {
         celular,
         tipoUsuario,
       );
-      _errorMessage = null;
     } catch (e) {
-      _errorMessage = e.toString(); // Captura el mensaje detallado
+      _setError(e.toString());
+    } finally {
+      _setLoading(false);
     }
-
-    _isLoading = false;
-    notifyListeners();
   }
 
   Future<void> logInUser(String email, String password) async {
-    _isLoading = true;
-    notifyListeners();
-
+    _setLoading(true);
+    _setError(null);
     try {
-      // Llama al métodod logInUser del AuthRepository para autenticar al usuario
       await _authRepository.logInUser(email, password);
-      _errorMessage = null; // Limpia cualquier mensaje de error previo
     } catch (e) {
-      _errorMessage = e.toString(); // Captura el mensaje de error
-      rethrow; // Lanza el error para manejarlo en la vista
+      _setError(e.toString());
+      rethrow; 
     } finally {
-      _isLoading = false;
-      notifyListeners();
+      _setLoading(false);
+    }
+  }
+
+  Future<void> logInUserWithRecaptcha(String email, String password, String recaptchaToken) async {
+    _setLoading(true);
+    _setError(null);
+    try {
+      await _authRepository.logInUserWithRecaptcha(email, password, recaptchaToken);
+    } catch (e) {
+      _setError(e.toString());
+      rethrow; 
+    } finally {
+      _setLoading(false);
     }
   }
 
   Future<void> logOut() async {
+    _setLoading(true);
+    _setError(null);
     try {
       await _authRepository.logOut();
-      _errorMessage = null;
-      notifyListeners();
     } catch (e) {
-      _errorMessage = e.toString();
-      notifyListeners();
+      _setError(e.toString());
+    } finally {
+      _setLoading(false);
     }
   }
 
   Future<void> changePassword(String newPassword) async {
+    _setLoading(true);
+    _setError(null);
     try {
       await _authRepository.changePassword(newPassword);
-      _errorMessage = null;
-      notifyListeners();
     } catch (e) {
-      _errorMessage = e.toString();
-      notifyListeners();
+      _setError(e.toString());
+    } finally {
+      _setLoading(false);
     }
   }
 
   Future<void> signInWithGoogle() async {
+    _setLoading(true);
+    _setError(null);
     try {
       await _authRepository.signInWithGoogle();
-      _errorMessage = null;
-      notifyListeners();
     } catch (e) {
-      _errorMessage = e.toString();
-      notifyListeners();
+      _setError(e.toString());
+    } finally {
+      _setLoading(false);
     }
   }
 }

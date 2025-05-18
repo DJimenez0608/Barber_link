@@ -6,12 +6,15 @@ class CustomFormField extends StatefulWidget {
   final bool obscureText;
   final bool enable;
   final TextEditingController controller;
+  final String? Function(String?)? validator;
+
   const CustomFormField({
     super.key,
     this.label,
-    this.obscureText = true,
+    this.obscureText = false,
     required this.controller,
     this.enable = true,
+    this.validator,
   });
 
   @override
