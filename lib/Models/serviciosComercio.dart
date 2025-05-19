@@ -1,17 +1,19 @@
+// lib/Models/serviciosComercio.dart
 class ServiciosComercio {
   final String id;
   final String? nombre;
-  final int precio;
-  final String? duracion;
-  final String?
-  comercioId; // Nuevo atributo para relacionar el servicio con un comercio
+  final String? precio; // Se mantiene como String? para consistencia con Firestore
+  final String? duracion; // Se mantiene como String?
+  final String? comercioId;
+  // final String? imagenUrl; // Eliminado
 
   ServiciosComercio({
     required this.id,
     this.nombre,
-    required this.precio,
+    this.precio,
     this.duracion,
     this.comercioId,
+    // this.imagenUrl, // Eliminado
   });
 
   factory ServiciosComercio.fromFirestore(
@@ -20,19 +22,21 @@ class ServiciosComercio {
   ) {
     return ServiciosComercio(
       id: docId,
-      nombre: data['nombre'],
-      precio: data['precio'],
-      duracion: data['duracion'],
-      comercioId: data['comercioId'], // Asignar el comercioId desde Firestore
+      nombre: data['nombre'] as String?,
+      precio: data['precio']?.toString(), // Asegura que sea String
+      duracion: data['duracion']?.toString(), // Asegura que sea String
+      comercioId: data['comercioId'] as String?,
+      // imagenUrl: data['imagenUrl'] as String?, // Eliminado
     );
   }
 
   Map<String, dynamic> toFirestore() {
     return {
-      'nombre': nombre,
-      'precio': precio,
-      'duracion': duracion,
-      'comercioId': comercioId, // Incluir comercioId al guardar en Firestore
+      if (nombre != null) 'nombre': nombre,
+      if (precio != null) 'precio': precio,
+      if (duracion != null) 'duracion': duracion,
+      if (comercioId != null) 'comercioId': comercioId,
+      // if (imagenUrl != null) 'imagenUrl': imagenUrl, // Eliminado
     };
   }
 }

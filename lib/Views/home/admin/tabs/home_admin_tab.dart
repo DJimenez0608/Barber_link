@@ -1,5 +1,5 @@
+import 'package:barber_link/Routes/routes.dart'; // Importar Routes
 import 'package:barber_link/Theme/app_colors.dart';
-import 'package:barber_link/Views/home/admin/manague_comerce/home_admin_comerce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:barber_link/Views/Widgets/boton_con_icono.dart';
@@ -11,12 +11,11 @@ class HomeAdminTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(20.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Título de bienvenida
-          Center(
-            child: Text(
+      child: SingleChildScrollView( // Envuelto en SingleChildScrollView para evitar overflow
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center, // Centrar horizontalmente
+          children: [
+            Text(
               '¡Bienvenido, Administrador!',
               style: GoogleFonts.jua(
                 fontSize: 24,
@@ -24,12 +23,8 @@ class HomeAdminTab extends StatelessWidget {
                 color: AppColors().azulMorado,
               ),
             ),
-          ),
-          const SizedBox(height: 10),
-
-          // Imagen del bigote
-          Center(
-            child: Stack(
+            const SizedBox(height: 10),
+            Stack(
               alignment: Alignment.topCenter,
               children: [
                 Image.asset(
@@ -50,11 +45,8 @@ class HomeAdminTab extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-
-          // Texto de opciones de administración
-          Center(
-            child: Text(
+            const SizedBox(height: 20), // Espacio ajustado
+            Text(
               'Opciones de Administración',
               style: GoogleFonts.jua(
                 fontSize: 20,
@@ -62,64 +54,45 @@ class HomeAdminTab extends StatelessWidget {
                 color: AppColors().azulMorado,
               ),
             ),
-          ),
-          const SizedBox(height: 50),
-
-          // Botón para gestionar comercios
-          Center(
-            child: BotonConIcono(
+            const SizedBox(height: 30), // Espacio ajustado
+            BotonConIcono(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const HomeAdminComerce(),
-                  ),
-                );
+                Navigator.pushNamed(context, Routes.homeManagueComerce); // Usar la constante de ruta
               },
               icon: const Icon(
                 Icons.store,
                 color: Colors.white,
-              ), // Ícono del botón
-              label: 'Gestionar Comercios', // Texto del botón
+              ), 
+              label: 'Gestionar Comercios', 
             ),
-          ),
-          const SizedBox(height: 50), // Separación de 50px
-          // Botón para gestionar membresías
-          Center(
-            child: BotonConIcono(
+            const SizedBox(height: 20), 
+            BotonConIcono(
               onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Función en desarrollo')),
-                );
+                // Navegar a la pantalla de gestión de membresías
+                Navigator.pushNamed(context, Routes.manageMemberships);
               },
               icon: const Icon(
-                Icons.attach_money,
+                Icons.card_membership, // Ícono cambiado
                 color: Colors.white,
-              ), // Ícono del botón
-              label: 'Gestionar Membresías', // Texto del botón
+              ), 
+              label: 'Gestionar Membresías', 
             ),
-          ),
-          const SizedBox(height: 50), // Separación de 50px
-          // Botón para gestionar usuarios
-          Center(
-            child: BotonConIcono(
+            const SizedBox(height: 20), 
+            BotonConIcono(
               onTap: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Función en desarrollo')),
+                  const SnackBar(content: Text('Función en desarrollo: Gestionar Usuarios')),
                 );
               },
               icon: const Icon(
                 Icons.group,
                 color: Colors.white,
-              ), // Ícono del botón
-              label: 'Gestionar Usuarios', // Texto del botón
+              ), 
+              label: 'Gestionar Usuarios', 
             ),
-          ),
-          const SizedBox(height: 50), // Separación de 50px
-          // Texto debajo de los botones
-          Center(
-            child: Text(
-              'Elije la opción que deseas monitorear',
+            const SizedBox(height: 40), // Espacio ajustado
+            Text(
+              'Elije la opción que deseas administrar', // Texto ajustado
               style: GoogleFonts.inter(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
@@ -127,8 +100,8 @@ class HomeAdminTab extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

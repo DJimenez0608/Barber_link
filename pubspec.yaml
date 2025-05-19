@@ -4,7 +4,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.7.2 # Ajusta según tu versión de Flutter
+  sdk: ^3.7.2 
 
 dependencies:
   flutter:
@@ -19,10 +19,8 @@ dependencies:
   flutter_stripe: ^11.5.0
   dio: ^5.8.0+1
   google_sign_in: ^6.3.0
-  
-  flutter_easy_recaptcha_v2: ^0.1.0
-  flutter_inappwebview: ^6.1.5
-  http: ^1.2.1
+  url_launcher: ^6.3.1
+  intl: ^0.19.0
 
 dev_dependencies:
   flutter_test:

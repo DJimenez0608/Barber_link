@@ -6,15 +6,15 @@ class CustomFormField extends StatefulWidget {
   final bool obscureText;
   final bool enable;
   final TextEditingController controller;
-  final String? Function(String?)? validator;
+  // final String? Function(String?)? validator; // Eliminado
 
   const CustomFormField({
     super.key,
     this.label,
-    this.obscureText = false,
+    this.obscureText = true, // Default a true como en el original
     required this.controller,
     this.enable = true,
-    this.validator,
+    // this.validator, // Eliminado
   });
 
   @override
@@ -22,12 +22,12 @@ class CustomFormField extends StatefulWidget {
 }
 
 class _CustomFormFieldState extends State<CustomFormField> {
-  late bool _obscureText;
+  late bool _obscureTextState; // Renombrado para evitar confusión con widget.obscureText
 
   @override
   void initState() {
     super.initState();
-    _obscureText = widget.obscureText;
+    _obscureTextState = widget.obscureText;
   }
 
   @override
@@ -35,7 +35,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 27.0),
       child: TextFormField(
-        obscureText: _obscureText,
+        obscureText: _obscureTextState,
         enabled: widget.enable,
         decoration: InputDecoration(
           focusedBorder: OutlineInputBorder(
@@ -45,20 +45,21 @@ class _CustomFormFieldState extends State<CustomFormField> {
           labelStyle: TextStyle(color: AppColors().negro),
           border: OutlineInputBorder(),
           suffixIcon:
-              widget.obscureText
+              widget.obscureText // Usar widget.obscureText para decidir si mostrar el icono
                   ? IconButton(
                     onPressed: () {
                       setState(() {
-                        _obscureText = !_obscureText;
+                        _obscureTextState = !_obscureTextState;
                       });
                     },
                     icon: Icon(
-                      _obscureText ? Icons.visibility_off : Icons.visibility,
+                      _obscureTextState ? Icons.visibility_off : Icons.visibility,
                     ),
                   )
                   : null,
         ),
         controller: widget.controller,
+        // validator: widget.validator, // Eliminado
       ),
     );
   }

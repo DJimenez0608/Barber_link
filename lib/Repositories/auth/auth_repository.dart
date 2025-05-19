@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert'; 
+// import 'package:http/http.dart' as http; // Eliminado
+// import 'dart:convert'; // Eliminado
 
 class AuthRepository {
   final auth = FirebaseAuth.instance;
@@ -42,7 +42,6 @@ class AuthRepository {
       }
     } catch (e) {
         // Si Firestore falla después de crear el usuario en Auth, intenta eliminar el usuario de Auth.
-        // Esto es una medida de limpieza, aunque puede fallar si el usuario actual ya no es el que se acaba de crear.
         User? currentUser = auth.currentUser;
         if (currentUser != null && currentUser.email == email) {
           await currentUser.delete().catchError((deleteError) {
@@ -73,54 +72,7 @@ class AuthRepository {
     }
   }
 
-  Future<void> logInUserWithRecaptcha(String email, String password, String recaptchaToken) async {
-    try {
-      // --- COLOCA LA URL DE TU FIREBASE FUNCTION AQUÍ ---
-      const String functionsUrl = 'TU_URL_DE_FIREBASE_FUNCTION_VERIFYRECAPTCHA'; // ¡¡¡REEMPLAZA ESTO!!!
-      // -------------------------------------------------
-      
-      if (functionsUrl == 'TU_URL_DE_FIREBASE_FUNCTION_VERIFYRECAPTCHA') {
-          throw Exception("Configuración pendiente: Debes reemplazar 'TU_URL_DE_FIREBASE_FUNCTION_VERIFYRECAPTCHA' en AuthRepository con la URL real de tu Firebase Function.");
-      }
-
-      final verificationUrl = Uri.parse(functionsUrl);
-      
-      final response = await http.post(
-        verificationUrl,
-        headers: {'Content-Type': 'application/json'},
-        body: json.encode({'token': recaptchaToken}),
-      );
-
-      if (response.statusCode == 200) {
-        final responseBody = json.decode(response.body);
-        if (responseBody['success'] == true) {
-          await auth.signInWithEmailAndPassword(email: email, password: password);
-        } else {
-          final errorCodes = responseBody['error-codes']?.toString() ?? 'sin detalles';
-          print('Error de verificación de reCAPTCHA en backend: $errorCodes');
-          throw 'La verificación "No soy un robot" falló. ($errorCodes). Intenta de nuevo.';
-        }
-      } else {
-        print('Error del servidor al verificar reCAPTCHA: ${response.statusCode} ${response.body}');
-        throw 'Error al conectar con el servidor para la verificación (${response.statusCode}). Intenta más tarde.';
-      }
-    } on FirebaseAuthException catch (e) {
-      print('Codigo de error Firebase Auth (login con reCAPTCHA): ${e.code}, ${e.message}');
-      switch (e.code) {
-        case 'invalid-credential':
-          throw 'El usuario o contraseña es incorrecto/a.';
-        case 'invalid-email':
-          throw 'El formato del correo electrónico no es válido.';
-        case 'user-disabled':
-          throw 'La cuenta de este usuario ha sido deshabilitada.';
-        default:
-          throw 'Ocurrió un error inesperado durante el inicio de sesión. Por favor, intenta nuevamente.';
-      }
-    } catch (e) {
-      print('Error en logInUserWithRecaptcha: $e');
-      throw e.toString(); 
-    }
-  }
+  // El método logInUserWithRecaptcha ha sido eliminado.
 
   Future<void> logOut() async {
     try {
@@ -150,6 +102,7 @@ class AuthRepository {
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
       if (googleUser == null) {
+        // El usuario canceló el flujo de inicio de sesión
         return null;
       }
       final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
